@@ -20,9 +20,6 @@
 
     <data>
         <variable
-            name="clickListener"
-            type="android.view.View.OnClickListener"/>
-        <variable
             name="book"
             type="me.amitghosh.modernandroidapparchitecture.data.Book"/>
     </data>

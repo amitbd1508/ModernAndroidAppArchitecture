@@ -6,8 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import me.amitghosh.modernandroidapparchitecture.utilities.InjectorUtils
 import me.amitghosh.modernandroidapparchitecture.viewModels.BooksViewModel
-
+import me.amitghosh.modernandroidapparchitecture.databinding.BooksFragmentBinding
 
 class BooksFragment : Fragment() {
 
@@ -20,7 +21,13 @@ class BooksFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.books_fragment, container, false)
+        val binding = BooksFragmentBinding.inflate(inflater, container, false)
+        val context = context ?: return binding.root
+
+        val factory = InjectorUtils.provideBooksViewModelFactory(context)
+        viewModel = ViewModelProviders.of(this, factory).get(BooksViewModel::class.java)
+
+        return  binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
