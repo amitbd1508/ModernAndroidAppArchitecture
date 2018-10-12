@@ -18,7 +18,8 @@ class BooksFragment : Fragment() {
     private lateinit var viewModel: BooksViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.books_fragment, container, false)
     }
 

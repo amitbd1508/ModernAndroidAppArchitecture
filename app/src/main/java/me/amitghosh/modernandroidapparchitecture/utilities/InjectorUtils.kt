@@ -16,10 +16,21 @@
 
 package me.amitghosh.modernandroidapparchitecture.utilities
 
+import android.content.Context
+import me.amitghosh.modernandroidapparchitecture.data.AppDatabase
+import me.amitghosh.modernandroidapparchitecture.data.BookRepository
+import me.amitghosh.modernandroidapparchitecture.viewModels.BooksViewModelFactory
+
 /**
  * Static methods used to inject classes needed for various Activities and Fragments.
  */
 object InjectorUtils {
+    private fun getPlantRepository(context: Context): BookRepository {
+        return BookRepository.getInstance(AppDatabase.getInstance(context).bookDao())
+    }
 
-
+    fun provideBooksViewModelFactory(context: Context): BooksViewModelFactory {
+        val repository = getPlantRepository(context)
+        return BooksViewModelFactory(repository)
+    }
 }
